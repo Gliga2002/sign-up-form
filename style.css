@@ -7,7 +7,11 @@
 :root {
   --background-color: #192a3b;
   --background-color--aside: #458ce9;
+  --background-color--btn: #5e98e3;
+
   --text-color:white;
+  --text-color--2:rgb(165, 168, 191);
+  --text-color--3:rgb(105, 105, 105);
 }
 
 html {
@@ -16,6 +20,7 @@ html {
   /* Percentage of user's browser font-size setting */
   font-size: 62.5%;
 }
+
 
 body {
   font-family: 'Roboto', sans-serif;
@@ -34,7 +39,10 @@ main {
 
 }
 
-.aside-heading {
+/* ASIDE SECTION */
+
+.aside-heading,
+.form-heading {
   font-size: 5.2rem;
   text-align: left;
 }
@@ -53,6 +61,22 @@ main {
   text-align: center;
 }
 
+form {
+  padding: 20vh 0;
+}
+
+/* FORM SECTION */
+.form-container {
+    /* 1140px */
+    padding: 0 20vh;
+    height: 100%;
+}
+
+.form-heading {
+  grid-column: 1 / -1;
+}
+
+
 
 /* .img--box img {
   height: calc(90%);
@@ -65,6 +89,11 @@ main {
 
 .grid--2-cols {
   grid-template-columns: calc(100% - 60%) auto;
+}
+
+.grid--2-cols-fr {
+  grid-template-columns: 1fr 1fr;
+ 
 }
 
 .flex {
@@ -83,6 +112,10 @@ main {
   gap:1.6rem;
 }
 
+.gap-md {
+  gap:4.5rem;
+}
+
 .flex--center {
   justify-content: center;
   align-items: center;
@@ -90,4 +123,51 @@ main {
 
 .margin-bottom-sm {
   margin-bottom:1.6rem;
+}
+
+.margin-bottom--md {
+  margin-bottom:2.4rem;
+}
+
+input {
+  padding:1.5rem;
+  border:1px solid black;
+  border-radius: 5px;
+  width: 80%;
+  border:0;
+  border-bottom:1px solid rgb(0,0,0,.4);
+  border-right: 1px solid rgb(0,0,0,.4);
+  background-color: var(--background-color);
+}
+
+.button-btn {
+  padding:1.5rem 5rem;
+  font-size: 3rem;
+  background-color: var(--background-color--btn);
+  border-radius:1rem;
+  border:0;
+  color:var(--text-color);
+}
+
+.button-text {
+  font-size:1.8rem;
+  letter-spacing: 1px;
+}
+
+.button-text--login {
+  color:var(--text-color--2, green);
+}
+
+input + span {
+  text-transform: uppercase;
+  font-size: 2.4rem;
+  color:var(--text-color--3);
+  position:absolute;
+  left:4px;
+  top:8px;
+  text-align: center;
+}
+
+.input-container {
+  position:relative;
 }

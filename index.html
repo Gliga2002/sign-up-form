@@ -19,27 +19,37 @@
           <p class="aside--p-box">Sign up today to get exciting offers..!</p>
       </aside>
       <form action="#" method="GET">
-        <h1>Get started</h1>
-        <div>
-          <input type="text" name="first_name"/>
+        <div class="form-container grid grid--2-cols-fr gap-md">
+          <h1 class="form-heading">Get started</h1>
+          <div class="input-container">
+            <input type="text" name="first_name"/>
+            <span>First Name*</span>
+          </div>
+          <div class="input-container">
+            <input type="text" name="last_name"/>
+            <span>Last Name*</span>
+          </div>
+          <div class="input-container">
+            <input type="email" name="email" />
+            <span>E-Mail* </span>
+          </div>
+          <div class="input-container">
+            <input type="number" name="phone" />
+            <span>Phone</span>
+          </div>
+          <div class="input-container">
+            <input type="password" name="password" />
+            <span>Password*</span>
+          </div>
+          <div class="input-container">
+            <input type="password" name="confirm-password" />
+            <span>Confirm Password*</span>
+          </div>
+          <div class="button-box">
+            <button class="button-btn margin-bottom--md" type="submit">Create Account</button>
+            <p class="button-text">Already have an account..? <span class="button-text--login">LOG IN</span></p>
+          </div>
         </div>
-        <div>
-          <input type="text" name="last_name"/>
-        </div>
-        <div>
-          <input type="email" name="email" />
-        </div>
-        <div>
-          <input type="number" name="phone" />
-        </div>
-        <div>
-          <input type="password" name="password" />
-        </div>
-        <div>
-          <input type="password" name="confirm-password" />
-        </div>
-        <button type="submit">Create Account</button>
-        <p>Already have an account..? LOG IN</p>
       </form>
     </main>
 </body>
