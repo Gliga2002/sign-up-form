@@ -2,6 +2,12 @@ const form = document.querySelector(".form-container");
 const password = document.querySelector(".password");
 const passwordConfirm = document.querySelector('.password-confirm');
 const error = document.querySelector('.error');
+const allInputs = document.querySelectorAll('input');
+
+const realArray = [...allInputs];
+
+
+
 
 
 let prevClickedSpan;
@@ -18,7 +24,6 @@ form.addEventListener('click', (e) => {
     if(prevClickedSpan) prevClickedSpan.classList.remove('clicked');
     return;
   }
-  console.log('clicked');
   if(clickedInput) {
     clickedSpan = clickedInput.nextElementSibling ;
   } else if (clickedSpan) {
@@ -29,6 +34,18 @@ form.addEventListener('click', (e) => {
   clickedSpan.classList.add('clicked');
   prevClickedSpan = clickedSpan;
 })
+
+realArray.forEach((input)=> {
+  input.addEventListener('keyup',(e) => {
+    if(e.target.value.length > 0) {
+      console.log('ovde')
+      e.target.classList.add('checked');
+    } else {
+      e.target.classList.remove('checked');
+    }
+  })
+})
+
 
 password.addEventListener('keypress', (e) => {
   passwordUser += e.key;
@@ -64,10 +81,5 @@ passwordConfirm.addEventListener('keydown', (e) => {
 })
 
 
-// formm.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   const inputs = document.querySelectorAll('inputs');
-//   inputs.forEach(input=> {
-//     console.log(input);
-//   })
-// })
+
+
