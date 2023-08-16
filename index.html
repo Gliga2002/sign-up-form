@@ -12,43 +12,43 @@
   <title>Sign up | Odin ™</title>
 </head>
 <body>
-    <main class="grid grid--2-cols">
-      <aside>
+    <main class="grid grid--2-cols background-color--blackish">
+      <aside class="background-color--bluish">
         <h1 class="aside-heading margin-bottom-sm">Odin ™</h1>
         <div class="aside--img-box">
         </div>
           <p class="aside--p-box">Sign up today to get exciting offers..!</p>
       </aside>
-      <form action="#" method="GET">
+      <form action="success.html" method="get">
         <div class="form-container grid grid--2-cols-fr gap-md">
           <h1 class="form-heading">Get started</h1>
           <div class="input-container">
-            <input required type="text" name="first_name"/>
+            <input required minlength="2" type="text" name="first_name"/>
             <span>First Name*</span>
-            <div class="error"></div>
+           
           </div>
           <div class="input-container">
             <input required type="text" name="last_name"/>
             <span>Last Name*</span>
-            <div class="error"></div>
+        
           </div>
           <div class="input-container">
             <input required type="email" name="email" />
             <span>E-Mail* </span>
-            <div class="error"></div>
+           
           </div>
           <div class="input-container">
             <input required type="number" name="phone" />
             <span>Phone*</span>
-            <div class="error"></div>
+        
           </div>
           <div class="input-container">
-            <input required type="password" name="password" />
+            <input class="password" required type="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"/>
             <span>Password*</span>
-            <div class="error"></div>
+            <p class="info">Minimum eight characters, at least one uppercase letter, one lowercase letter and one number:</p>
           </div>
           <div class="input-container">
-            <input required type="password" name="confirm-password" />
+            <input  class="password-confirm" required type="password" name="confirm-password"  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$"/>
             <span>Confirm Password*</span>
             <div class="error"></div>
           </div>
