@@ -66,7 +66,6 @@ passwordConfirm.addEventListener('keypress', (e) => {
   confirmedPasswordUser += e.key
   if(confirmedPasswordUser === passwordUser) {
     error.textContent = "";
-    passwordConfirm.classList.remove('password-confirm');
   } else {
     error.textContent = "*Password did not match!" 
   }
