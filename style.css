@@ -131,7 +131,7 @@ form {
 }
 
 .background-color--bluish {
-  background-color: var(--background-color--aside, blue);
+  background-color: var(--background-color--aside,blue);
 }
 
 input {
