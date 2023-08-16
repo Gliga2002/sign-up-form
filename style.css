@@ -27,7 +27,6 @@ body {
 }
 
 aside {
- 
   padding:0.8rem 0 0 1.6rem;
 }
 
@@ -59,13 +58,13 @@ main {
 }
 
 form {
-  padding: 20vh 0;
+  padding: 50px 0;
 }
 
 /* FORM SECTION */
 .form-container {
     /* 1140px */
-    padding: 0 20vh;
+    padding: 0 100px;
     height: 100%;
 }
 
@@ -283,6 +282,6 @@ input:valid + span {
 
 .info {
   margin-top: 5px;
-  font-size:11px;
+  font-size:12px;
 }
 
