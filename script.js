@@ -45,6 +45,7 @@ function handleDebouncedInput(e) {
 
   if (passwordFirstEl) {
     passwordFirstValue = inputValue;
+    checkIfIsSame()
   }
   if (passwordConfirmEl) {
     passwordConfirmValue = inputValue;
