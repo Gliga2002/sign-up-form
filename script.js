@@ -1,83 +1,86 @@
 const form = document.querySelector(".form-container");
-const password = document.querySelector(".password");
-const passwordConfirm = document.querySelector('.password-confirm');
-const error = document.querySelector('.error');
-const allInputs = document.querySelectorAll('input');
+const inputContainerPasswordConfirm = document.querySelector('.password--confirm');
+const errorEl = document.querySelector('.error-message');
+const inputsNodeList = document.querySelectorAll('input');
+const inputsArray = [...inputsNodeList];
 
-const realArray = [...allInputs];
-
-
-
-
-
-let prevClickedSpan;
-let passwordUser = '';
-let confirmedPasswordUser = '';
-
-
+let prevClickedContainerEl;
 form.addEventListener('click', (e) => {
-  let clickedSpan;
-  let clickedInput;
-  clickedSpan = e.target.closest('span');
-  clickedInput = e.target.closest('input');
-  if(!clickedInput && !clickedSpan) {
-    if(prevClickedSpan) prevClickedSpan.classList.remove('clicked');
-    return;
-  }
-  if(clickedInput) {
-    clickedSpan = clickedInput.nextElementSibling ;
-  } else if (clickedSpan) {
-    clickedInput = clickedSpan.previousElementSibling;
-  }
-  clickedInput.focus();
-  if(prevClickedSpan) prevClickedSpan.classList.remove('clicked');
-  clickedSpan.classList.add('clicked');
-  prevClickedSpan = clickedSpan;
+  const inputContainerEl = e.target.closest('.input-container');
+  const inputContainerPasswordEl = e.target.closest('.password')
+  if (prevClickedContainerEl) removeClickedClass(prevClickedContainerEl);
+
+  if (!inputContainerEl || inputContainerPasswordEl) return;
+
+  inputContainerEl.classList.add('clicked');
+
+  const inputContainerInputEl = inputContainerEl.children[0];
+  inputContainerInputEl.focus();
+
+  prevClickedContainerEl = inputContainerEl;
 })
 
-realArray.forEach((input)=> {
-  input.addEventListener('keyup',(e) => {
-    if(e.target.value.length > 0) {
-      console.log('ovde')
-      e.target.classList.add('checked');
-    } else {
-      e.target.classList.remove('checked');
-    }
-  })
-})
+function removeClickedClass(el) {
+  el.classList.remove('clicked');
+}
 
+function debounce(func, delay) {
+  let timer;
+  return function () {
+    clearTimeout(timer);
+    timer = setTimeout(() => {
+      func.apply(this, arguments);
+    }, delay);
+  };
+}
 
-password.addEventListener('keypress', (e) => {
-  passwordUser += e.key;
-  console.log(passwordUser);
-  if(passwordUser.match("^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$")) {
-    password.classList.remove('password')
+let passwordFirstValue;
+let passwordConfirmValue;
+
+function handleDebouncedInput(e) {
+  const inputValue = e.target.value;
+  const inputContainerEl = e.target.closest('.input-container');
+  const passwordFirstEl = e.target.closest('.password--first');
+  const passwordConfirmEl = e.target.closest('.password--confirm');
+
+  if (passwordFirstEl) {
+    passwordFirstValue = inputValue;
   }
-})
-
-password.addEventListener('keydown', (e) => {
-  if(e.key === 'Backspace' && passwordUser.length > 0) {
-    passwordUser = passwordUser.slice(0,-1);
-  }
-
-})
-
-passwordConfirm.addEventListener('keypress', (e) => {
-  confirmedPasswordUser += e.key
-  if(confirmedPasswordUser === passwordUser) {
-    error.textContent = "";
-  } else {
-    error.textContent = "*Password did not match!" 
-  }
-  console.log(e.key);
-})
-
-passwordConfirm.addEventListener('keydown', (e) => {
-  if(e.key === 'Backspace' && confirmedPasswordUser.length > 0) {
-    confirmedPasswordUser = confirmedPasswordUser.slice(0,-1);
+  if (passwordConfirmEl) {
+    passwordConfirmValue = inputValue;
+    checkIfIsSame()
   }
 
+  if (inputValue && !passwordConfirmEl) inputContainerEl.classList.add('typed')
+  else inputContainerEl.classList.remove('typed')
+
+}
+
+const debouncedInput = debounce
+  // Debounce for 500 milliseconds
+  (handleDebouncedInput, 500);
+
+inputsArray.forEach((input) => {
+  input.addEventListener('input', debouncedInput)
 })
+
+
+function checkIfIsSame() {
+  if (passwordConfirmValue === passwordFirstValue) displayCorrectInput()
+  else displayErrorInput();
+}
+
+function displayCorrectInput() {
+  inputContainerPasswordConfirm.classList.add('correct');
+  inputContainerPasswordConfirm.classList.remove('error');
+  errorEl.innerHTML = '';
+}
+
+function displayErrorInput() {
+  inputContainerPasswordConfirm.classList.remove('correct');
+  inputContainerPasswordConfirm.classList.add('error');
+  errorEl.innerHTML = 'Passwords do not match!'
+}
 
 
 
