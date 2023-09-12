@@ -53,22 +53,13 @@ function handleDebouncedInput(e) {
 
   if (inputValue && !passwordConfirmEl) {
     inputContainerEl.classList.add('typed')
-    if(passwordFirstEl) passwordFirstEl.classList.remove('error');
+    if (passwordFirstEl) passwordFirstEl.classList.remove('error');
   } else {
     inputContainerEl.classList.remove('typed')
-    if(passwordFirstEl) passwordFirstEl.classList.add('error');
+    if (passwordFirstEl) passwordFirstEl.classList.add('error');
   }
 
 }
-
-const debouncedInput = debounce
-  // Debounce for 500 milliseconds
-  (handleDebouncedInput, 500);
-
-inputsArray.forEach((input) => {
-  input.addEventListener('input', debouncedInput)
-})
-
 
 function checkIfIsSame() {
   if (passwordConfirmValue === passwordFirstValue) displayCorrectInput()
@@ -86,6 +77,17 @@ function displayErrorInput() {
   inputContainerPasswordConfirm.classList.add('error');
   errorEl.innerHTML = 'Passwords do not match!'
 }
+
+const debouncedInput = debounce
+  // Debounce for 500 milliseconds
+  (handleDebouncedInput, 500);
+
+inputsArray.forEach((input) => {
+  input.addEventListener('input', debouncedInput)
+})
+
+
+
 
 
 
