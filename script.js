@@ -51,8 +51,13 @@ function handleDebouncedInput(e) {
     checkIfIsSame()
   }
 
-  if (inputValue && !passwordConfirmEl) inputContainerEl.classList.add('typed')
-  else inputContainerEl.classList.remove('typed')
+  if (inputValue && !passwordConfirmEl) {
+    inputContainerEl.classList.add('typed')
+    if(passwordFirstEl) passwordFirstEl.classList.remove('error');
+  } else {
+    inputContainerEl.classList.remove('typed')
+    if(passwordFirstEl) passwordFirstEl.classList.add('error');
+  }
 
 }
 
