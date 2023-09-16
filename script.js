@@ -1,11 +1,17 @@
-const form = document.querySelector(".form-container");
+const formContainerEl = document.querySelector(".form-container");
+const formEl = document.querySelector('form');
 const inputContainerPasswordConfirm = document.querySelector('.password--confirm');
 const errorEl = document.querySelector('.error-message');
 const inputsNodeList = document.querySelectorAll('input');
 const inputsArray = [...inputsNodeList];
 
 let prevClickedContainerEl;
-form.addEventListener('click', (e) => {
+
+let passwordFirstValue;
+let passwordConfirmValue;
+
+
+formContainerEl.addEventListener('click', (e) => {
   const inputContainerEl = e.target.closest('.input-container');
   const inputContainerPasswordEl = e.target.closest('.password')
   if (prevClickedContainerEl) removeClickedClass(prevClickedContainerEl);
@@ -18,6 +24,10 @@ form.addEventListener('click', (e) => {
   inputContainerInputEl.focus();
 
   prevClickedContainerEl = inputContainerEl;
+})
+
+formEl.addEventListener('submit', (e) => {
+  if (!checkIfIsSame()) e.preventDefault();
 })
 
 function removeClickedClass(el) {
@@ -34,8 +44,7 @@ function debounce(func, delay) {
   };
 }
 
-let passwordFirstValue;
-let passwordConfirmValue;
+
 
 function handleDebouncedInput(e) {
   const inputValue = e.target.value;
@@ -63,8 +72,13 @@ function handleDebouncedInput(e) {
 }
 
 function checkIfIsSame() {
-  if (passwordConfirmValue === passwordFirstValue) displayCorrectInput()
-  else displayErrorInput();
+  if (passwordConfirmValue === passwordFirstValue) {
+    displayCorrectInput()
+    return true;
+  } else {
+    displayErrorInput();
+    return false;
+  }
 }
 
 function displayCorrectInput() {
